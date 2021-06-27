@@ -353,8 +353,8 @@ class Telegram
      */
     public function getCommandObject(string $command, string $filepath = ''): ?Command
     {
-        if (isset($this->commands_objects[$command])) {
-            return $this->commands_objects[$command];
+        if ($command_inst = $this->commands_objects[mb_strtolower($command)] ?? null) {
+            return $command_inst;
         }
 
         $which = [Command::AUTH_SYSTEM];
